@@ -1,0 +1,30 @@
+{
+  "name": "vue-webpack",
+  "version": "1.0.0",
+  "description": "基于webpack的vue脚手架",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/guojintao32/vue-webpack.git"
+  },
+  "keywords": [
+    "vue"
+  ],
+  "author": "guojintao",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/guojintao32/vue-webpack/issues"
+  },
+  "homepage": "https://github.com/guojintao32/vue-webpack#readme",
+  "devDependencies": {
+    "webpack": "^4.40.2",
+    "webpack-dev-server": "^3.8.1"
+  },
+  "dependencies": {
+    "vue": "^2.6.10",
+    "vuex": "^3.1.1"
+  }
+}
