@@ -1,6 +1,7 @@
 const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
   entry: './src/index.js',
   output: {
@@ -20,7 +21,14 @@ module.exports = {
       },
       {
         test: /\.(sa|sc|c)ss$/,
-        use: ['style-loader','css-loader']
+        use: [{
+          loader: MiniCssExtractPlugin.loader,
+          options: {
+            publicPath: '../',
+            hmr: false,
+            reloadAll: true
+          },
+        }, 'css-loader']
       }
     ]
   },
@@ -29,10 +37,14 @@ module.exports = {
       title: "vue_stage",
       template: './index.html'
     }),
-    new VueLoaderPlugin()
+    new VueLoaderPlugin(),
+    new MiniCssExtractPlugin({
+      filename: './css/[name].css',
+      chunkFilename: '[id].css',
+    })
   ],
-  devServer:{
-    contentBase:'./dist',
-    hot:true
+  devServer: {
+    contentBase: './dist',
+    hot: true
   }
 }
