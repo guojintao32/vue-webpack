@@ -17,6 +17,10 @@ module.exports = {
             loader: 'vue-loader'
           }
         ]
+      },
+      {
+        test: /\.(sa|sc|c)ss$/,
+        use: ['style-loader','css-loader']
       }
     ]
   },
@@ -27,9 +31,8 @@ module.exports = {
     }),
     new VueLoaderPlugin()
   ],
-  resolve: {
-    alias: {
-        'vue$': 'vue/dist/vue.esm.js' //内部为正则表达式  vue结尾的
-    }
-}
+  devServer:{
+    contentBase:'./dist',
+    hot:true
+  }
 }

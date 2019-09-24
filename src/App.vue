@@ -14,5 +14,7 @@
 </script>
 
 <style>
- 
+ body{
+   background: red;
+ }
 </style>
