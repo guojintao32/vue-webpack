@@ -3,7 +3,7 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 module.exports = {
-  entry: './src/index.js',
+  entry: path.resolve(__dirname,'./src/index.js'),
   output: {
     filename: 'app.js',
     path: path.resolve('./dist')
@@ -35,7 +35,7 @@ module.exports = {
   plugins: [
     new HtmlWebpackPlugin({
       title: "vue_stage",
-      template: './index.html'
+      template: path.resolve(__dirname,'./index.html')
     }),
     new VueLoaderPlugin(),
     new MiniCssExtractPlugin({
