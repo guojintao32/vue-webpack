@@ -45,6 +45,11 @@ module.exports = {
   ],
   devServer: {
     contentBase: './dist',
-    hot: true
+    hot: true,
+    historyApiFallback:{
+      rewrites: [
+        { from: /^\/$/, to: '/dist/index.html' }
+      ]
+    }
   }
 }
