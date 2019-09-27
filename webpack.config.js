@@ -2,11 +2,13 @@ const path = require('path');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const webpack = require('webpack');
 module.exports = {
   entry: path.resolve(__dirname,'./src/index.js'),
   output: {
     filename: 'app.js',
-    path: path.resolve('./dist')
+    path: path.resolve('./dist'),
+    publicPath:'/assets/'
   },
   mode: 'development',
   module: {
@@ -29,6 +31,16 @@ module.exports = {
             reloadAll: true
           },
         }, 'css-loader']
+      },{
+        test: /\.(png|jpg|jpeg|gif|eot|ttf|woff|woff2|svg|svgz)(\?.+)?$/,
+        use: [
+          {
+            loader: 'url-loader',
+            options: {
+              limit: 10000
+            }
+          }
+        ]
       }
     ]
   },
@@ -41,8 +53,16 @@ module.exports = {
     new MiniCssExtractPlugin({
       filename: './css/[name].css',
       chunkFilename: '[id].css',
-    })
+    }),
+    new webpack.HashedModuleIdsPlugin()
   ],
+  optimization:{
+    runtimeChunk: true,
+
+    splitChunks: {
+      chunks: 'all'
+    }
+  },
   devServer: {
     contentBase: './dist',
     hot: true,
