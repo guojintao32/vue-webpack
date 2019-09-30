@@ -3,7 +3,9 @@ const VueLoaderPlugin = require('vue-loader/lib/plugin');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 const webpack = require('webpack');
-module.exports = {
+const SpeedMeasurePlugin = require("speed-measure-webpack-plugin");
+const smp = new SpeedMeasurePlugin();
+module.exports = smp.wrap({
   entry: path.resolve(__dirname,'./src/index.js'),
   output: {
     filename: 'app.js',
@@ -41,7 +43,18 @@ module.exports = {
             }
           }
         ]
-      }
+      }, {
+        test: /\.js$/,
+        loader: 'babel-loader',
+        include:[
+          path.resolve(__dirname,'../src')
+        ],
+        options:{
+          presets:[
+            '@babel/preset-env',
+          ]
+        }
+      },
     ]
   },
   plugins: [
@@ -72,4 +85,4 @@ module.exports = {
       ]
     }
   }
-}
+})
